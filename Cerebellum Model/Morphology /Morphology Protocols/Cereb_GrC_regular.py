@@ -52,8 +52,8 @@ class Grc_regular():
 
         i3d = h.Import3d_GUI(cell,0)
         i3d.instantiate(self)
-        
-#Soma channels
+
+        # Soma channels
         self.soma[0].nseg = 1 + (2 * int(self.soma[0].L / 40))
         self.soma[0].Ra = 100
         self.soma[0].cm = 2
@@ -66,69 +66,69 @@ class Grc_regular():
         self.soma[0].insert('Kv3_4')
         self.soma[0].gkbar_Kv3_4 = params["soma_gkbar_Kv3_4"]
         
-        self.soma[0].insert('Kv4_3')
-        if subtype == 1:
-            "gkbar_Kv4_3": 0.0028149683906099998,
-        elif subtype == 2:
-            "gkbar_Kv4_3": 0.0032501728450999999,
-        elif subtype == 3:
-            "gkbar_Kv3_4": 0.0027313162972600002,
-        elif subtype == 4:
-            "gkbar_Kv3_4": 0.0028149683906099998,
-        self.soma[0].ek = -88
+        # self.soma[0].insert('Kv4_3')
+        # if subtype == 1:
+        #     "gkbar_Kv4_3": 0.0028149683906099998,
+        # elif subtype == 2:
+        #     "gkbar_Kv4_3": 0.0032501728450999999,
+        # elif subtype == 3:
+        #     "gkbar_Kv3_4": 0.0027313162972600002,
+        # elif subtype == 4:
+        #     "gkbar_Kv3_4": 0.0028149683906099998,
+        # self.soma[0].ek = -88
         
-        self.soma[0].insert('Kir2_3')
-        if subtype == 1:
-            "gkbar_Kir2_3": 0.00074725514701999996,
-        elif subtype == 2:
-            "gkbar_Kir2_3": 0.00080747403035999997,
-        elif subtype == 3:
-            "gkbar_Kir2_3": 0.00094360184424999995,
-        elif subtype == 4:
-            "gkbar_Kir2_3": 0.00074725514701999996,
+        # self.soma[0].insert('Kir2_3')
+        # if subtype == 1:
+        #     "gkbar_Kir2_3": 0.00074725514701999996,
+        # elif subtype == 2:
+        #     "gkbar_Kir2_3": 0.00080747403035999997,
+        # elif subtype == 3:
+        #     "gkbar_Kir2_3": 0.00094360184424999995,
+        # elif subtype == 4:
+        #     "gkbar_Kir2_3": 0.00074725514701999996,
         
     
 	
-        self.soma[0].insert('GRC_CA') 
-        if subtype == 1:
-            "gcabar_GRC_CA": 0.00060938071783999998,
-        elif subtype == 2:
-            "gcabar_GRC_CA": 0.00066384354030999998,
-        elif subtype == 3:
-            "gcabar_GRC_CA": 0.00029165028328999998,
-        elif subtype == 4:
-            "gcabar_GRC_CA": 0.00060938071783999998,
+        # self.soma[0].insert('GRC_CA') 
+        # if subtype == 1:
+        #     "gcabar_GRC_CA": 0.00060938071783999998,
+        # elif subtype == 2:
+        #     "gcabar_GRC_CA": 0.00066384354030999998,
+        # elif subtype == 3:
+        #     "gcabar_GRC_CA": 0.00029165028328999998,
+        # elif subtype == 4:
+        #     "gcabar_GRC_CA": 0.00060938071783999998,
 	
-        self.soma[0].insert('Kv1_1')
-        if subtype == 1:
-            "gbar_Kv1_1": 0.0056973826455499997,
-        elif subtype == 2:
-            "gbar_Kv1_1": 0.0046520692281700003,
-        elif subtype == 3:
-            "gbar_Kv1_1": 0.0031675812802999998,
-        elif subtype == 4:
-            "gbar_Kv1_1": 0.0056973826455499997,
+        # self.soma[0].insert('Kv1_1')
+        # if subtype == 1:
+        #     "gbar_Kv1_1": 0.0056973826455499997,
+        # elif subtype == 2:
+        #     "gbar_Kv1_1": 0.0046520692281700003,
+        # elif subtype == 3:
+        #     "gbar_Kv1_1": 0.0031675812802999998,
+        # elif subtype == 4:
+        #     "gbar_Kv1_1": 0.0056973826455499997,
         
-        self.soma[0].insert('Kv1_5') 
-        if subtype == 1:
-            "gKur_Kv1_5": 0.00083407556713999999,
-        elif subtype == 2:
-            "gKur_Kv1_5": 0.00106988075956,
-        elif subtype == 3:
-            "gKur_Kv1_5": 0.00107176612352,
-        elif subtype == 4:
-            "gKur_Kv1_5": 0.00083407556713999999,
+        # self.soma[0].insert('Kv1_5') 
+        # if subtype == 1:
+        #     "gKur_Kv1_5": 0.00083407556713999999,
+        # elif subtype == 2:
+        #     "gKur_Kv1_5": 0.00106988075956,
+        # elif subtype == 3:
+        #     "gKur_Kv1_5": 0.00107176612352,
+        # elif subtype == 4:
+        #     "gKur_Kv1_5": 0.00083407556713999999,
         
         
-        self.soma[0].insert('Kv2_2_0010')
-        if subtype == 1:
-            "gKv2_2bar_Kv2_2_0010": 1.203410852e-05,
-        elif subtype == 2:
-            "gKv2_2bar_Kv2_2_0010": 2.5949576899999998e-05,
-        elif subtype == 3:
-            "gKv2_2bar_Kv2_2_0010": 6.710092624e-05,
-        elif subtype == 4:
-            "gKv2_2bar_Kv2_2_0010": 1.203410852e-05,
+        # self.soma[0].insert('Kv2_2_0010')
+        # if subtype == 1:
+        #     "gKv2_2bar_Kv2_2_0010": 1.203410852e-05,
+        # elif subtype == 2:
+        #     "gKv2_2bar_Kv2_2_0010": 2.5949576899999998e-05,
+        # elif subtype == 3:
+        #     "gKv2_2bar_Kv2_2_0010": 6.710092624e-05,
+        # elif subtype == 4:
+        #     "gKv2_2bar_Kv2_2_0010": 1.203410852e-05,
         
 
         if subtype == "accerlate":
