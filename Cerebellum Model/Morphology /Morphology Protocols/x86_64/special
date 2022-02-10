@@ -1,0 +1,17 @@
+#!/bin/sh
+if test "x${NRNHOME}" = "x" ; then
+    NRNHOME="/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/neuron/.data"
+fi
+if test "${NEURONHOME}" = "" ; then
+    NEURONHOME=${NRNHOME}/share/nrn
+    export NEURONHOME
+fi
+if test "x${NRNBIN}" = "x" ; then
+    NRNBIN="/Library/Frameworks/Python.framework/Versions/3.9/bin"
+fi
+if test "" = "yes" ; then
+    NRNIV="${NRNBIN}/nrniv.app/Contents/MacOS/nrniv"
+else
+    NRNIV="${NRNBIN}/nrniv"
+fi
+"${NRNIV}" -dll "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64/.libs/libnrnmech.so" "$@"

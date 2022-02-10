@@ -1,0 +1,241 @@
+
+./Cav12.c: ../Cav12.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Cav12.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Cav12.o: ./Cav12.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Cav13.c: ../Cav13.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Cav13.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Cav13.o: ./Cav13.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Cav2_3.c: ../Cav2_3.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Cav2_3.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Cav2_3.o: ./Cav2_3.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Cav3_1.c: ../Cav3_1.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Cav3_1.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Cav3_1.o: ./Cav3_1.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GOLGI_Ampa_mossy_det_vi.c: ../GOLGI_Ampa_mossy_det_vi.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GOLGI_Ampa_mossy_det_vi.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./GOLGI_Ampa_mossy_det_vi.o: ./GOLGI_Ampa_mossy_det_vi.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GOLGI_Ampa_pf_aa_det_vi.c: ../GOLGI_Ampa_pf_aa_det_vi.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GOLGI_Ampa_pf_aa_det_vi.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./GOLGI_Ampa_pf_aa_det_vi.o: ./GOLGI_Ampa_pf_aa_det_vi.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GRANULE_Ampa_det_vi.c: ../GRANULE_Ampa_det_vi.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GRANULE_Ampa_det_vi.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./GRANULE_Ampa_det_vi.o: ./GRANULE_Ampa_det_vi.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GRANULE_Nmda_det_vi.c: ../GRANULE_Nmda_det_vi.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GRANULE_Nmda_det_vi.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./GRANULE_Nmda_det_vi.o: ./GRANULE_Nmda_det_vi.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GRC_CA.c: ../GRC_CA.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GRC_CA.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./GRC_CA.o: ./GRC_CA.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GRC_KM.c: ../GRC_KM.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GRC_KM.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./GRC_KM.o: ./GRC_KM.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GRC_NA.c: ../GRC_NA.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GRC_NA.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./GRC_NA.o: ./GRC_NA.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GRC_NA_FHF.c: ../GRC_NA_FHF.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GRC_NA_FHF.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./GRC_NA_FHF.o: ./GRC_NA_FHF.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Hcn1.c: ../Hcn1.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Hcn1.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Hcn1.o: ./Hcn1.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Hcn2.c: ../Hcn2.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Hcn2.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Hcn2.o: ./Hcn2.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kca11.c: ../Kca11.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kca11.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kca11.o: ./Kca11.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kca22.c: ../Kca22.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kca22.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kca22.o: ./Kca22.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kca31.c: ../Kca31.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kca31.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kca31.o: ./Kca31.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kir23.c: ../Kir23.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kir23.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kir23.o: ./Kir23.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kv11.c: ../Kv11.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kv11.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kv11.o: ./Kv11.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kv15.c: ../Kv15.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kv15.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kv15.o: ./Kv15.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kv22.c: ../Kv22.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kv22.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kv22.o: ./Kv22.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kv34.c: ../Kv34.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kv34.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kv34.o: ./Kv34.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Kv43.c: ../Kv43.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Kv43.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Kv43.o: ./Kv43.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Leak.c: ../Leak.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Leak.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Leak.o: ./Leak.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./Nav16.c: ../Nav16.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) Nav16.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./Nav16.o: ./Nav16.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./PC_NMDA_NR2B.c: ../PC_NMDA_NR2B.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) PC_NMDA_NR2B.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./PC_NMDA_NR2B.o: ./PC_NMDA_NR2B.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./UBC_TRP.c: ../UBC_TRP.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) UBC_TRP.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./UBC_TRP.o: ./UBC_TRP.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./cdp5StCmod.c: ../cdp5StCmod.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) cdp5StCmod.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./cdp5StCmod.o: ./cdp5StCmod.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./cdp5_CR.c: ../cdp5_CR.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) cdp5_CR.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./cdp5_CR.o: ./cdp5_CR.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./cdp5_CR_CAM.c: ../cdp5_CR_CAM.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) cdp5_CR_CAM.mod -o "/Users/tylerrivera/Honors Project 2022/Honors-Project-2022/Cerebellum Model/Morphology /Morphology Protocols/Mod Files/x86_64")
+
+./cdp5_CR_CAM.o: ./cdp5_CR_CAM.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
