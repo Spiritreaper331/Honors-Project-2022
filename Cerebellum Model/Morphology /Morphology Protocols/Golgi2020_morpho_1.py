@@ -11,18 +11,18 @@ class Golgi_morpho_1():
         
         cell = h.Import3d_Neurolucida3()
 
-        if subtype == 1:
+        if subtype == "morpho_1":
                 cell.input('morphology/pair-140514-C2-1_split_1.asc')
-        elif subtype == 2:
+        elif subtype == "morpho_2":
                 cell.input('morphology/pair-140514-C2-1_split_2.asc')
             
         
         i3d = h.Import3d_GUI(cell,0)
         i3d.instantiate(self)
         
-        if subtype == 1:
+        if subtype == "morpho_1":
                 conductvalues = np.genfromtxt("Optimization_result.txt")
-        if subtype == 2:
+        if subtype == "morpho_2":
                 conductvalues = np.genfromtxt("Optimization_result 2.txt")
 #Soma
 
@@ -65,11 +65,9 @@ class Golgi_morpho_1():
         self.soma[0].TotalPump_cdp5StCmod = 1e-7
         
         self.soma[0].eca = 137
-
 	
         self.whatami = "golgi2020"
       
-	  
 ##dend #to be redone
 	
         self.dendbasal = []
@@ -156,11 +154,7 @@ class Golgi_morpho_1():
                 i.push()
                 i.eca = 137
                 h.pop_section()   
-                    
-	  
-
-	  
-	  
+          
 #axon
         for i,d in enumerate(self.axon):
             if i == 0:
@@ -223,7 +217,6 @@ class Golgi_morpho_1():
         elif subtype == 2:
                 self.axon[i].gkbar_Kv3_4 = conductvalues[24]
                 self.axon[i].ek = -80  
-                
 
                 self.axon[i].insert('cdp5StCmod')	    
                 self.axon[i].TotalPump_cdp5StCmod = 1e-8
@@ -241,7 +234,6 @@ class Golgi_morpho_1():
 
         self.vm = h.Vector()
         self.vm.record(self.soma[0](0.5)._ref_v)
-        
 
     def createsyn(self, pf_n, mf_n, aa_n, inib_n, subtype):	
 #pf       
@@ -301,9 +293,3 @@ class Golgi_morpho_1():
         for i in range(0, aa_n):
                 self.L_AA.append(Synapse_py3('AA',self,self.dend_aa[i])) 
                 self.L_AA_NMDA_B.append(Synapse_py3('MF_nmda_B',self,self.dend_aa[i])) 
-
-
-
-
-
-

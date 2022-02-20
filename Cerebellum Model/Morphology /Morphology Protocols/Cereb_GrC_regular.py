@@ -14,26 +14,118 @@
 
 from neuron import h
 import math
-from Syntype_mild import Synapse_py3
+from Synapses import Synapse_py3
 import numpy as np
-
 
 Grc_params = {
     "regular": {
         "soma_gmax_Leak": 0.00029038073716,
         "soma_gkbar_Kv3_4": 0.00076192450951999995,
+        "soma_gkbar_Kv4_3": 0.0028149683906099998,
+        "soma_gkbar_Kir2_3": 0.00074725514701999996,
+        "soma_gcabar_GRC_CA": 0.00060938071783999998,
+        "soma_gbar_Kv1_1": 0.0056973826455499997,
+        "soma_gKur_Kv1_5": 0.00083407556713999999,
+        "soma_gKv2_2bar_Kv2_2_0010": 1.203410852e-05,
+        "i_gmax_Leak": 0.00025029700736999997,
+        "i_gcabar_GRC_CA": 0.0050012800845900002,
+        "i_gbar_Kca1_1": 0.010018074546510001,
+        "i_gbar_Kv1_1": 0.00381819207934,
+        "self.axon.gmax_Leak": 0.00036958189720000001,
+        "self.axon.gnabar_GRC_NA_FHF": 0.0092880585146199995,
+        "self.axon.gkbar_Kv3_4": 0.020373463109149999,
+        "self.axon.gcabar_GRC_CA": 0.00057726155447,
+        "self.ais.gnabar_GRC_NA_FHF": 1.28725006737226,
+        "self.ais.gkbar_Kv3_4": 0.0064959534065400001,
+        "self.ais.gmax_Leak": 0.00029276697557000002,
+        "self.ais.gcabar_GRC_CA": 0.00031198539471999999,
+        "self.ais.gkbar_GRC_KM": 0.00056671971737000002,
+        "b.gnabar_GRC_NA": 0.026301636815019999,
+        "b.gkbar_Kv3_4": 0.00237386061632,
+        "b.gmax_Leak": 9.3640921249999996e-05,
+        "b.gcabar_GRC_CA": 0.00068197420273000001,
+        "i.gnabar_GRC_NA": 0.017718484492610001,
+        "i.gkbar_Kv3_4": 0.0081756804703699993,
+        "i.gmax_Leak": 3.5301616000000001e-07,
+        "i.gcabar_GRC_CA": 0.00020856833529999999,
+        "z.gnabar_GRC_NA": 0.017718484492610001,
+        "z.gkbar_Kv3_4": 0.0081756804703699993,
+        "z.gmax_Leak": 3.5301616000000001e-07,
+        "z.gcabar_GRC_CA": 0.00020856833529999999
     },
     "mild": {
         "soma_gmax_Leak": 0.00020821612897999999,
         "soma_gkbar_Kv3_4": 0.00053837153610999998,
+        "soma_gkbar_Kv4_3": 0.0032501728450999999,
+        "soma_gkbar_Kir2_3": 0.00080747403035999997,
+        "soma_gcabar_GRC_CA": 0.00066384354030999998,
+        "soma_gbar_Kv1_1": 0.0046520692281700003,
+        "soma_gKur_Kv1_5": 0.00106988075956,
+        "soma_gKv2_2bar_Kv2_2_0010": 2.5949576899999998e-05,
+        "i_gmax_Leak": 0.00020424219215,
+        "i_gcabar_GRC_CA": 0.01841833779253,
+        "i_gbar_Kca1_1": 0.02998872868395,
+        "i_gbar_Kv1_1": 0.00010675447184,
+        "self.axon.gmax_Leak": 0.00025295417368000002,
+        "self.axon.gnabar_GRC_NA_FHF": 0.011082499796400001,
+        "self.axon.gkbar_Kv3_4": 0.050732563882920002,
+        "self.axon.gcabar_GRC_CA": 0.00028797253573000002,
+        "self.ais.gnabar_GRC_NA_FHF": 1.28725006737226,
+        "self.ais.gkbar_Kv3_4": 0.034592458064240002,
+        "self.ais.gmax_Leak": 0.00025011065810000001,
+        "self.ais.gcabar_GRC_CA": 0.00011630629281,
+        "self.ais.gkbar_GRC_KM": 0.00044764153078999998,
+        "b.gnabar_GRC_NA": 0.026301636815019999,
+        "b.gkbar_Kv3_4": 0.0046029972380800003,
+        "b.gmax_Leak": 7.8963697590000003e-05,
+        "b.gcabar_GRC_CA": 0.00059214434259999998,
+        "i.gnabar_GRC_NA": 0.01896618618573,
+        "i.gkbar_Kv3_4": 0.0094015060525799998,
+        "i.gmax_Leak": 4.1272473000000001e-07,
+        "i.gcabar_GRC_CA": 0.00064742320254000001,
+        "z.gnabar_GRC_NA": 0.01896618618573,
+        "z.gkbar_Kv3_4": 0.0094015060525799998,
+        "z.gmax_Leak": 4.1272473000000001e-07,
+        "z.gcabar_GRC_CA": 0.00064742320254000001,
     },
     "adapting": {
         "soma_gmax_Leak": 0.00027672909671000001,
         "soma_gkbar_Kv3_4": 0.00373151328841,
+        "soma_gkbar_Kv4_3": 0.0027313162972600002,
+        "soma_gkbar_Kir2_3": 0.00094360184424999995,
+        "soma_gcabar_GRC_CA": 0.00029165028328999998,
+        "soma_gbar_Kv1_1": 0.0031675812802999998,
+        "soma_gKur_Kv1_5": 0.00107176612352,
+        "soma_gKv2_2bar_Kv2_2_0010": 6.710092624e-05,
+        "i_gmax_Leak": 0.00029871180381000001,
+        "i_gcabar_GRC_CA": 0.024687091736070001,
+        "i_gbar_Kca1_1": 0.01185742892862,
+        "i_gbar_Kv1_1": 0.00015853886699000001,
+        "self.axon.gmax_Leak": 0.00031475453130000002,
+        "self.axon.gnabar_GRC_NA_FHF": 0.020910983616370001,
+        "self.axon.gkbar_Kv3_4": 0.03097630887484,
+        "self.axon.gcabar_GRC_CA": 0.00019803691988000001,
+        "self.ais.gnabar_GRC_NA_FHF": 1.5810107836409499,
+        "self.ais.gkbar_Kv3_4": 0.039582385081389997,
+        "self.ais.gmax_Leak": 0.00025512657995000002,
+        "self.ais.gcabar_GRC_CA": 0.00038160760886000002,
+        "self.ais.gkbar_GRC_KM": 0.00049717923887,
+        "b.gnabar_GRC_NA": 0.025441894508310001,
+        "b.gkbar_Kv3_4": 0.0046504514953399998,
+        "b.gmax_Leak": 5.3037170669999997e-05,
+        "b.gcabar_GRC_CA": 0.00031374692347000001,
+        "i.gnabar_GRC_NA": 0.0142518259615,
+        "i.gkbar_Kv3_4": 0.0098649550733799999,
+        "i.gmax_Leak": 1.4118927999999999e-07,
+        "i.gcabar_GRC_CA": 0.00024821458382999999,
+        "z.gnabar_GRC_NA": 0.0142518259615,
+        "z.gkbar_Kv3_4": 0.0098649550733799999,
+        "z.gmax_Leak": 1.4118927999999999e-07,
+        "z.gcabar_GRC_CA": 0.00024821458382999999,
     }
 }
 Grc_params["accelerate"] = Grc_params["regular"].copy()
-#Grc_params["accelerate"][...] = ...
+Grc_params["accelerate"]["z.gmax_Leak"] = 1.4118927999999999e-07
 
 
 class Grc_regular():
@@ -60,78 +152,31 @@ class Grc_regular():
         
         self.soma[0].insert('Leak')
         self.soma[0].gmax_Leak = params["soma_gmax_Leak"]
-        
         self.soma[0].e_Leak = -60
         
         self.soma[0].insert('Kv3_4')
         self.soma[0].gkbar_Kv3_4 = params["soma_gkbar_Kv3_4"]
         
-        # self.soma[0].insert('Kv4_3')
-        # if subtype == 1:
-        #     "gkbar_Kv4_3": 0.0028149683906099998,
-        # elif subtype == 2:
-        #     "gkbar_Kv4_3": 0.0032501728450999999,
-        # elif subtype == 3:
-        #     "gkbar_Kv3_4": 0.0027313162972600002,
-        # elif subtype == 4:
-        #     "gkbar_Kv3_4": 0.0028149683906099998,
-        # self.soma[0].ek = -88
+        self.soma[0].insert('Kv4_3')
+        self.soma[0].gkbar_Kv4_3 = params["soma_gkbar_Kv4_3"]
+        self.soma[0].ek = -88
         
-        # self.soma[0].insert('Kir2_3')
-        # if subtype == 1:
-        #     "gkbar_Kir2_3": 0.00074725514701999996,
-        # elif subtype == 2:
-        #     "gkbar_Kir2_3": 0.00080747403035999997,
-        # elif subtype == 3:
-        #     "gkbar_Kir2_3": 0.00094360184424999995,
-        # elif subtype == 4:
-        #     "gkbar_Kir2_3": 0.00074725514701999996,
-        
-    
-	
-        # self.soma[0].insert('GRC_CA') 
-        # if subtype == 1:
-        #     "gcabar_GRC_CA": 0.00060938071783999998,
-        # elif subtype == 2:
-        #     "gcabar_GRC_CA": 0.00066384354030999998,
-        # elif subtype == 3:
-        #     "gcabar_GRC_CA": 0.00029165028328999998,
-        # elif subtype == 4:
-        #     "gcabar_GRC_CA": 0.00060938071783999998,
-	
-        # self.soma[0].insert('Kv1_1')
-        # if subtype == 1:
-        #     "gbar_Kv1_1": 0.0056973826455499997,
-        # elif subtype == 2:
-        #     "gbar_Kv1_1": 0.0046520692281700003,
-        # elif subtype == 3:
-        #     "gbar_Kv1_1": 0.0031675812802999998,
-        # elif subtype == 4:
-        #     "gbar_Kv1_1": 0.0056973826455499997,
-        
-        # self.soma[0].insert('Kv1_5') 
-        # if subtype == 1:
-        #     "gKur_Kv1_5": 0.00083407556713999999,
-        # elif subtype == 2:
-        #     "gKur_Kv1_5": 0.00106988075956,
-        # elif subtype == 3:
-        #     "gKur_Kv1_5": 0.00107176612352,
-        # elif subtype == 4:
-        #     "gKur_Kv1_5": 0.00083407556713999999,
-        
-        
-        # self.soma[0].insert('Kv2_2_0010')
-        # if subtype == 1:
-        #     "gKv2_2bar_Kv2_2_0010": 1.203410852e-05,
-        # elif subtype == 2:
-        #     "gKv2_2bar_Kv2_2_0010": 2.5949576899999998e-05,
-        # elif subtype == 3:
-        #     "gKv2_2bar_Kv2_2_0010": 6.710092624e-05,
-        # elif subtype == 4:
-        #     "gKv2_2bar_Kv2_2_0010": 1.203410852e-05,
-        
+        self.soma[0].insert('Kir2_3')
+        self.soma[0].gkbar_Kir2_3 = params["soma_gkbar_Kir2_3"]
 
-        if subtype == "accerlate":
+        self.soma[0].insert('GRC_CA') 
+        self.soma[0].gcabar_GRC_CA = params["soma_gcabar_GRC_CA"]
+
+        self.soma[0].insert('Kv1_1')
+        self.soma[0].gbar_Kv1_1 = params["soma_gbar_Kv1_1"]
+        
+        self.soma[0].insert('Kv1_5') 
+        self.soma[0].gKur_Kv1_5 = params["soma_gKur_Kv1_5"]
+
+        self.soma[0].insert('Kv2_2_0010')
+        self.soma[0].gKv2_2bar_Kv2_2_0010 = params["soma_gKv2_2bar_Kv2_2_0010"]
+    
+        if subtype == "accelerate":
             self.axon.insert('cdp5_CR_CAM')
         else:
             self.soma[0].insert('cdp5_CR')
@@ -142,7 +187,7 @@ class Grc_regular():
 
         self.whatami = "GrC_2020"
         if subtype != "regular":
-            self.whatami += "_" + subtype
+            self.whatami += "_accelerate" 
 
 #DEND		  
         for i in self.dend:
@@ -151,50 +196,23 @@ class Grc_regular():
             i.cm = 2.5
                 
             i.insert('Leak')
-            if subtype == 1:
-                i.gmax_Leak = 0.00025029700736999997
-            elif subtype == 2:
-                i.gmax_Leak = 0.00020424219215
-            elif subtype == 3:
-                i.gmax_Leak = 0.00029871180381000001
-            elif subtype == 4:
-                i.gmax_Leak = 0.00025029700736999997
+            i.gmax_Leak = params["i_gmax_Leak"]
             i.e_Leak =  -60	
             
             i.insert('GRC_CA')
-            if subtype == 1:
-                i.gcabar_GRC_CA = 0.0050012800845900002
-            elif subtype == 2:
-                i.gcabar_GRC_CA = 0.01841833779253
-            elif subtype == 3:
-                i.gcabar_GRC_CA = 0.024687091736070001
-            elif subtype == 4:
-                i.gcabar_GRC_CA = 0.0050012800845900002
+            i.gcabar_GRC_CA = params["i_gcabar_GRC_CA"]
                 
             i.insert('Kca1_1')
-            if subtype == 1:
-                i.gbar_Kca1_1 = 0.010018074546510001
-            elif subtype == 2:
-                i.gbar_Kca1_1 = 0.02998872868395
-            elif subtype == 3:
-                i.gbar_Kca1_1 = 0.01185742892862
-            elif subtype == 4:
-                i.gbar_Kca1_1 = 0.010018074546510001
+            i.gbar_Kca1_1 = params["i_gbar_Kca1_1"]
             i.ek = -88
         
             i.insert('Kv1_1') 
-            if subtype == 1:
-                i.gbar_Kv1_1 = 0.00381819207934
-            elif subtype == 2:
-                i.gbar_Kv1_1 = 0.00010675447184
-            elif subtype == 3:
-                i.gbar_Kv1_1 = 0.00015853886699000001
-            elif subtype == 4:
-                i.gbar_Kv1_1 = 0.00381819207934
+            i.gbar_Kv1_1 = params["i_gbar_Kv1_1"]
             
-            
-
-            i.insert('cdp5_CR')
+            if subtype == "accelerate":
+                self.axon.insert('cdp5_CR_CAM')
+            else:
+                self.soma[0].insert('cdp5_CR')
             
             i.push()
             i.eca = 137.5
@@ -209,49 +227,24 @@ class Grc_regular():
         self.axon.cm = 2
         
         self.axon.insert('Leak')
-        if subtype == 1:
-                self.axon.gmax_Leak = 0.00036958189720000001
-        elif subtype == 2:
-                self.axon.gmax_Leak = 0.00025295417368000002
-        elif subtype == 3:
-                self.axon.gmax_Leak = 0.00031475453130000002
-        elif subtype == 4:
-                self.axon.gmax_Leak = 0.00036958189720000001
+        self.axon.gmax_Leak = params["self.axon.gmax_Leak"]
         self.axon.e_Leak =  -60
         
         self.axon.insert('GRC_NA_FHF')
-        if subtype == 1:
-                self.axon.gnabar_GRC_NA_FHF = 0.0092880585146199995
-        elif subtype == 2:
-                self.axon.gnabar_GRC_NA_FHF = 0.011082499796400001
-        elif subtype == 3:
-                self.axon.gnabar_GRC_NA_FHF = 0.020910983616370001
-        elif subtype == 4:
-                self.axon.gnabar_GRC_NA_FHF = 0.0092880585146199995
+        self.axon.gnabar_GRC_NA_FHF = params["self.axon.gnabar_GRC_NA_FHF"]
         self.axon.ena = 87.39
 
         self.axon.insert('Kv3_4')
-        if subtype == 1:
-                self.axon.gkbar_Kv3_4 = 0.020373463109149999
-        elif subtype == 2:
-                self.axon.gkbar_Kv3_4 = 0.050732563882920002
-        elif subtype == 3:
-                self.axon.gkbar_Kv3_4 = 0.03097630887484
-        elif subtype == 4:
-                self.axon.gkbar_Kv3_4 = 0.020373463109149999
+        self.axon.gkbar_Kv3_4 = params["self.axon.gkbar_Kv3_4"]
         self.axon.ek = -88
 	
         self.axon.insert('GRC_CA')
-        if subtype == 1:
-                self.axon.gcabar_GRC_CA = 0.00057726155447
-        elif subtype == 2:
-                self.axon.gcabar_GRC_CA = 0.00028797253573000002
-        elif subtype == 3:
-                self.axon.gcabar_GRC_CA = 0.00019803691988000001
-        elif subtype == 4:
-                self.axon.gcabar_GRC_CA = 0.00057726155447
+        self.axon.gcabar_GRC_CA = params["self.axon.gcabar_GRC_CA"]
 	
-        self.axon.insert('cdp5_CR')
+        if subtype == "accelerate":
+            self.axon.insert('cdp5_CR_CAM')
+        else:
+            self.axon.insert('cdp5_CR')
         
         self.axon.push() 
         self.axon.eca = 137.5
@@ -270,62 +263,28 @@ class Grc_regular():
         self.ais.cm = 1
         
         self.ais.insert('GRC_NA_FHF')
-        if subtype == 1:
-                self.ais.gnabar_GRC_NA_FHF = 1.28725006737226
-        elif subtype == 2:
-                self.ais.gnabar_GRC_NA_FHF = 1.28725006737226
-        elif subtype == 3:
-                self.ais.gnabar_GRC_NA_FHF = 1.5810107836409499
-        elif subtype == 4:
-                self.ais.gnabar_GRC_NA_FHF = 1.28725006737226
+        self.ais.gnabar_GRC_NA_FHF = params["self.ais.gnabar_GRC_NA_FHF"]
         self.ais.ena = 87.39
 
         self.ais.insert('Kv3_4')
-        if subtype == 1:
-                self.ais.gkbar_Kv3_4 = 0.0064959534065400001
-        elif subtype == 2:
-                self.ais.gkbar_Kv3_4 = 0.034592458064240002
-        elif subtype == 3:
-                self.ais.gkbar_Kv3_4 = 0.039582385081389997
-        elif subtype == 4:
-                self.ais.gkbar_Kv3_4 = 0.0064959534065400001
+        self.ais.gkbar_Kv3_4 = params["self.ais.gkbar_Kv3_4"]
         self.ais.ek = -88
             
         self.ais.insert('Leak')
-        if subtype == 1:
-                self.ais.gmax_Leak = 0.00029276697557000002
-        elif subtype == 2:
-                self.ais.gmax_Leak = 0.00025011065810000001
-        elif subtype == 3:
-                self.ais.gmax_Leak = 0.00025512657995000002
-        elif subtype == 4:
-                self.ais.gmax_Leak = 0.00029276697557000002
+        self.ais.gmax_Leak = params["self.ais.gmax_Leak"]
         self.ais.e_Leak =  -60
-	
 
         self.ais.insert('GRC_CA')
-        if subtype == 1:
-                self.ais.gcabar_GRC_CA = 0.00031198539471999999
-        elif subtype == 2:
-                self.ais.gcabar_GRC_CA = 0.00011630629281
-        elif subtype == 3:
-                self.ais.gcabar_GRC_CA = 0.00038160760886000002
-        elif subtype == 4:
-                self.ais.gcabar_GRC_CA = 0.00031198539471999999
+        self.ais.gcabar_GRC_CA = params["self.ais.gcabar_GRC_CA"]
 	
         self.ais.insert('GRC_KM') 
-        if subtype == 1:
-                self.ais.gkbar_GRC_KM = 0.00056671971737000002
-        elif subtype == 2:
-                self.ais.gkbar_GRC_KM = 0.00044764153078999998
-        elif subtype == 3:
-                self.ais.gkbar_GRC_KM = 0.00049717923887
-        elif subtype == 4:
-                self.ais.gkbar_GRC_KM = 0.00056671971737000002
+        self.ais.gkbar_GRC_KM = params["self.ais.gkbar_GRC_KM"]
         
-        self.ais.insert('cdp5_CR')
+        if subtype == "accelerate":
+            self.ais.insert('cdp5_CR_CAM')
+        else:
+            self.ais.insert('cdp5_CR')
 
-        
         self.ais.push()
         self.ais.eca = 137.5
 		
@@ -348,48 +307,19 @@ class Grc_regular():
             b.cm = 1
             
             b.insert('GRC_NA')
-            if subtype == 1:
-                b.gnabar_GRC_NA = 0.026301636815019999
-            elif subtype == 2:
-                b.gnabar_GRC_NA = 0.026301636815019999
-            elif subtype == 3:
-                b.gnabar_GRC_NA = 0.025441894508310001
-            elif subtype == 4:
-                b.gnabar_GRC_NA = 0.026301636815019999
+            b.gnabar_GRC_NA = params["b.gnabar_GRC_NA"]
             b.ena = 87.39
 
             b.insert('Kv3_4')
-            if subtype == 1:
-                b.gkbar_Kv3_4 = 0.00237386061632
-            elif subtype == 2:
-                b.gkbar_Kv3_4 = 0.0046029972380800003
-            elif subtype == 3:
-                b.gkbar_Kv3_4 = 0.0046504514953399998
-            elif subtype == 4:
-                b.gkbar_Kv3_4 = 0.00237386061632
+            b.gkbar_Kv3_4 = params["b.gkbar_Kv3_4"]
             b.ek = -88
                 
             b.insert('Leak')
-            if subtype == 1:
-                b.gmax_Leak = 9.3640921249999996e-05
-            elif subtype == 2:
-                b.gmax_Leak = 7.8963697590000003e-05
-            elif subtype == 3:
-                b.gmax_Leak = 5.3037170669999997e-05
-            elif subtype == 4:
-                b.gmax_Leak = 9.3640921249999996e-05
+            b.gmax_Leak = params["b.gmax_Leak"]
             b.e_Leak =  -60
             
             b.insert('GRC_CA')
-            if subtype == 1:
-                b.gcabar_GRC_CA = 0.00068197420273000001
-            elif subtype == 2:
-                b.gcabar_GRC_CA = 0.00059214434259999998
-            elif subtype == 3:
-                b.gcabar_GRC_CA = 0.00031374692347000001
-            elif subtype == 4:
-                b.gcabar_GRC_CA = 0.00068197420273000001
-            
+            b.gcabar_GRC_CA = params["b.gcabar_GRC_CA"]
             b.insert('cdp5_CR')
     
             b.push()
@@ -414,49 +344,24 @@ class Grc_regular():
             i.cm = 1
             
             i.insert('GRC_NA')
-            if subtype == 1:
-                i.gnabar_GRC_NA = 0.017718484492610001
-            elif subtype == 2:
-                i.gnabar_GRC_NA = 0.01896618618573
-            elif subtype == 3:
-                i.gnabar_GRC_NA = 0.0142518259615
-            elif subtype == 4:
-                i.gnabar_GRC_NA = 0.017718484492610001
+            i.gnabar_GRC_NA = params["i.gnabar_GRC_NA"]
             i.ena = 87.39
 
             i.insert('Kv3_4')
-            if subtype == 1:
-                i.gkbar_Kv3_4 = 0.0081756804703699993
-            elif subtype == 2:
-                i.gkbar_Kv3_4 = 0.0094015060525799998
-            elif subtype == 3:
-                i.gkbar_Kv3_4 = 0.0098649550733799999
-            elif subtype == 4:
-                i.gkbar_Kv3_4 = 0.0081756804703699993
+            i.gkbar_Kv3_4 = params["i.gkbar_Kv3_4"]
             i.ek = -88
                 
             i.insert('Leak')
-            if subtype == 1:
-                i.gmax_Leak = 3.5301616000000001e-07
-            elif subtype == 2:
-                i.gmax_Leak = 4.1272473000000001e-07
-            elif subtype == 3:
-                i.gmax_Leak = 1.4118927999999999e-07
-            elif subtype == 4:
-                i.gmax_Leak = 3.5301616000000001e-07
+            i.gmax_Leak = params["i.gmax_Leak"]
             i.e_Leak =  -60
             
             i.insert('GRC_CA') 
-            if subtype == 1:
-                i.gcabar_GRC_CA = 0.00020856833529999999
-            elif subtype == 2:
-                i.gcabar_GRC_CA = 0.00064742320254000001
-            elif subtype == 3:
-                i.gcabar_GRC_CA = 0.00024821458382999999
-            elif subtype == 4:
-                i.gcabar_GRC_CA = 0.00020856833529999999
+            i.gcabar_GRC_CA = params["i.gcabar_GRC_CA"]
             
-            i.insert('cdp5_CR')
+            if subtype == "accelerate":
+                i.insert('cdp5_CR_CAM')
+            else:
+                i.insert('cdp5_CR')
 
             i.push()
             i.eca = 137.5
@@ -479,49 +384,25 @@ class Grc_regular():
             z.cm = 1
             
             z.insert('GRC_NA')
-            if subtype == 1:
-                z.gnabar_GRC_NA = 0.017718484492610001
-            elif subtype == 2:
-                z.gnabar_GRC_NA = 0.01896618618573
-            elif subtype == 3:
-                z.gnabar_GRC_NA = 0.0142518259615
-            elif subtype == 4:
-                z.gnabar_GRC_NA = 0.017718484492610001
+            z.gnabar_GRC_NA = params["z.gnabar_GRC_NA"]
             z.ena = 87.39
 
             z.insert('Kv3_4')
-            if subtype == 1:
-                z.gkbar_Kv3_4 = 0.0081756804703699993
-            elif subtype == 2:
-                z.gkbar_Kv3_4 = 0.0094015060525799998
-            elif subtype == 3:
-                z.gkbar_Kv3_4 = 0.0098649550733799999
-            elif subtype == 4:
-                z.gkbar_Kv3_4 = 0.0081756804703699993
+            z.gkbar_Kv3_4 = params["z.gkbar_Kv3_4"]
             z.ek = -88
                 
             z.insert('Leak')
-            if subtype == 1:
-                z.gmax_Leak = 3.5301616000000001e-07
-            elif subtype == 2:
-                z.gmax_Leak = 4.1272473000000001e-07
-            elif subtype == 3:
-                z.gmax_Leak = 1.4118927999999999e-07
-            elif subtype == 4:
-                z.gmax_Leak = 1.4118927999999999e-07
+            z.gmax_Leak = params["z.gmax_Leak"]
             z.e_Leak =  -60
             
             z.insert('GRC_CA')
-            if subtype == 1:
-                z.gcabar_GRC_CA = 0.00020856833529999999
-            elif subtype == 2:
-                z.gcabar_GRC_CA = 0.00064742320254000001
-            elif subtype == 3:
-                z.gcabar_GRC_CA = 0.00024821458382999999
-            elif subtype == 4:
-                z.gcabar_GRC_CA = 0.00020856833529999999
+            z.gcabar_GRC_CA = params["z.gcabar_GRC_CA"]
+
             
-            z.insert('cdp5_CR')
+            if subtype == "accelerate":
+                i.insert('cdp5_CR_CAM')
+            else:
+                i.insert('cdp5_CR')
         
             z.push()
             z.eca = 137.5

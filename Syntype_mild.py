@@ -1,7 +1,7 @@
 from neuron import h
 
 class Synapse_py3:
-    def __init__(self,source,target,section,weight = 1):	
+    def __init__(self,source,target,section,weight = 1):
 
         self.input = h.NetStim(0.5)
         self.input.start = -10
@@ -12,7 +12,7 @@ class Synapse_py3:
 
         if (type(source) == type('s')):
             sourcetype = source
-                
+            
 #GOLGI CELL
         if sourcetype == 'PF':
             if target.whatami == 'golgi2020':
@@ -71,6 +71,7 @@ class Synapse_py3:
 
                 self.nc_syn = [h.NetCon(self.input,receptor[0],0,0.1,1) for receptor in self.postsyns.values()]
 
+                           
 #granule cell     
         if sourcetype == 'mossy':
             if target.whatami == 'GrC_2020':
@@ -94,13 +95,6 @@ class Synapse_py3:
                 self.postsyns['NMDA'][0].gmax = 18800  
                 self.postsyns['NMDA'][0].U=0.43
                 self.nc_syn = [h.NetCon(self.input,receptor[0],0,0.1,1) for receptor in self.postsyns.values()]
-            
+		
         else:
             print('SOURCE TYPE DOES NOT EXIST SOMETHING WRONG!!!!!!!!!')
-            
-
-
-
-
-
-

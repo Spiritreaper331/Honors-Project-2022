@@ -18,8 +18,6 @@ nmossy = 4  # There is code that assumes this equals be nsyn1 (in the original c
 NumSyn = 2  # This value turns off mossy fibers above that value
             # This can be changed at runtime if either the LTP() or LTD() function is called afterwards
 
-
-
 # Single compartment cell
 class Grc:
     def __init__(self, nsyn):
