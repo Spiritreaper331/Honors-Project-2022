@@ -73,7 +73,7 @@ class Golgi_morpho_1():
         self.dendbasal = []
         self.dendapical = []
         
-        if subtype == 1:
+        if subtype == "morpho_1":
                 for en_index, d_sec in enumerate(self.dend):
                         if en_index >= 0 and en_index <= 3 or en_index >= 16 and en_index <= 17 or en_index >= 33 and en_index <= 41 or en_index == 84 or en_index >= 105 and en_index <= 150:
                                 self.dendbasal.append(d_sec)
@@ -81,7 +81,7 @@ class Golgi_morpho_1():
                 if en_index >= 4 and en_index <= 15 or en_index >= 18 and en_index <= 32 or en_index >= 42 and en_index <= 83 or en_index >= 85 and en_index <= 104:
                         self.dendapical.append(d_sec)  
 
-        elif subtype == 2:
+        elif subtype == "morpho_2":
                 for en_index, d_sec in enumerate(self.dend):
                         if en_index == 0 or en_index == 75 or en_index >= 103 and en_index <= 125 or en_index >= 153 and en_index <= 167:
                                 self.dendbasal.append(d_sec)
@@ -235,17 +235,17 @@ class Golgi_morpho_1():
         self.vm = h.Vector()
         self.vm.record(self.soma[0](0.5)._ref_v)
 
-    def createsyn(self, pf_n, mf_n, aa_n, inib_n, subtype):	
+    def createsyn(self, pf_n, mf_n, aa_n, subtype):	
 #pf       
         self.L_PF = []
         self.dend_pf = []
         
          #the list self.dend_pf is the same as self.dendapical... so....
-        if subtype == 1:
+        if subtype == "morpho_1":
                 for sec_index, sec_sec in enumerate(self.dend):
                         if sec_index >= 4 and sec_index <= 15 or sec_index >= 18 and sec_index <= 32 or sec_index >= 42 and sec_index <= 83 or sec_index >= 85 and sec_index <= 104:
                                 self.dend_pf.append(sec_sec)
-        elif subtype == 2:
+        elif subtype == "morpho_2":
                 for sec_index, sec_sec in enumerate(self.dend):
                         if sec_index >= 1 and sec_index <= 74 or sec_index >= 76 and sec_index <= 102 or sec_index >= 126 and sec_index <= 152:
                                 self.dend_pf.append(sec_sec) 
@@ -268,12 +268,12 @@ class Golgi_morpho_1():
         self.dend_mf = []
         self.dend_aa = []
         
-        if subtype == 1:
+        if subtype == "morpho_1":
                 for sec_index, sec_sec in enumerate(self.dend):
                         if sec_index >= 108 and sec_index <= 112 or sec_index >= 114 and sec_index <= 121 or sec_index >= 128 and sec_index <= 129 or sec_index >= 131 and sec_index <= 132 or sec_index >= 135 and sec_index <= 140 or sec_index >= 144 and sec_index <= 145 or sec_index >= 147 and sec_index <= 150:
                                 self.dend_mf.append(sec_sec)   
                                 self.dend_aa.append(sec_sec)
-        elif subtype == 2:
+        elif subtype == "morpho_2":
                 for sec_index, sec_sec in enumerate(self.dend):
                         if sec_index >= 105 and sec_index <= 107 or sec_index >= 110 and sec_index <= 113 or sec_index >= 115 and sec_index <= 119 or sec_index >= 123 and sec_index <= 124 or sec_index >= 154 and sec_index <= 160 or sec_index >= 162 and sec_index <= 167:
                                 self.dend_mf.append(sec_sec)   

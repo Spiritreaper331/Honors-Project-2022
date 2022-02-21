@@ -177,7 +177,7 @@ class Grc_regular():
         self.soma[0].gKv2_2bar_Kv2_2_0010 = params["soma_gKv2_2bar_Kv2_2_0010"]
     
         if subtype == "accelerate":
-            self.axon.insert('cdp5_CR_CAM')
+            self.soma[0].insert('cdp5_CR_CAM')
         else:
             self.soma[0].insert('cdp5_CR')
 
@@ -185,9 +185,10 @@ class Grc_regular():
         self.soma[0].eca = 137.5
         h.pop_section()
 
-        self.whatami = "GrC_2020"
-        if subtype != "regular":
-            self.whatami += "_accelerate" 
+        if subtype == "regular":
+            self.whatami = "GrC_2020_regular"
+        else:
+            self.whatami = "GrC_2020_mild"
 
 #DEND		  
         for i in self.dend:
@@ -210,9 +211,9 @@ class Grc_regular():
             i.gbar_Kv1_1 = params["i_gbar_Kv1_1"]
             
             if subtype == "accelerate":
-                self.axon.insert('cdp5_CR_CAM')
+                i.insert('cdp5_CR_CAM')
             else:
-                self.soma[0].insert('cdp5_CR')
+                i.insert('cdp5_CR')
             
             i.push()
             i.eca = 137.5
@@ -400,9 +401,9 @@ class Grc_regular():
 
             
             if subtype == "accelerate":
-                i.insert('cdp5_CR_CAM')
+                z.insert('cdp5_CR_CAM')
             else:
-                i.insert('cdp5_CR')
+                z.insert('cdp5_CR')
         
             z.push()
             z.eca = 137.5
