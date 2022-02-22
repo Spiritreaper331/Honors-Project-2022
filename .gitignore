@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# NEURON
+*.c
+*.o
+*.dylib
+special
+x86_64/

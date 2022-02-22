@@ -448,12 +448,12 @@ class Grc_regular():
         self.MF_GrC = []
         self.MF_GrC_mossy = []
       
-        #Mossy AMPA
-        for x in range(0,nsyn_MF_AMPA):	
+        # Mossy AMPA
+        for x in range(0, nsyn_MF_AMPA):
             for z1 in list_dend_AMPA:
-                self.MF_GrC.append(Synapse_py3('mossy',self,self.dend[z1]))    
+                self.MF_GrC.append(Synapse_py3('mossy',self, self.dend[z1]))    
 
-        #Mossy NMDA
-        for y in range(0,nsyn_MF_NMDA):	
+        # Mossy NMDA
+        for y in range(0, nsyn_MF_NMDA):
             for z2 in list_dend_NMDA:
-                self.MF_GrC_mossy.append(Synapse_py3('mossynmda',self,self.dend[z2])) 
+                self.MF_GrC_mossy.append(Synapse_py3('mossynmda', self,self.dend[z2])) 
