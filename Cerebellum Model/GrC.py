@@ -47,6 +47,7 @@ GrC_params = {
 }
 GrC_params["accelerate"] = copy.deepcopy(GrC_params["regular"].copy())
 GrC_params["accelerate"]["pf"]["gmax_Leak"] = 1.4118927999999999e-07  # TODO: for pf 2 only?
+GrC_params["accelerate"]["dend"]["gtrp_Ubc_TRP"] = 0.0005
 GrC_rev_potentials = { "e_Leak": -60, "ek": -88, "ena": 87.39, "eca": 137.5}
 
 
@@ -71,21 +72,24 @@ class GrC():
         add_channels(self.soma[0], ('Leak', 'Kv3_4', 'Kv4_3', 'Kir2_3', 'GRC_CA', 'Kv1_1', 'Kv1_5', 'Kv2_2_0010', ca_ion_accum), params["soma"], GrC_rev_potentials)
 
         # Dendrites
+        channels = ('Leak', 'GRC_CA', 'Kca1_1', 'Kv1_1', ca_ion_accum)
+        if 'gtrp_Ubc_TRP' in params["dend"]:
+            channels += ('Ubc_TRP',)
         for dend in self.dend:
             dend.nseg = 1 + 2 * int(dend.L / 40)
             dend.Ra = 100
             dend.cm = 2.5
-            add_channels(dend, ('Leak', 'GRC_CA', 'Kca1_1', 'Kv1_1', ca_ion_accum), params["dend"], GrC_rev_potentials)
+            add_channels(dend, channels, params["dend"], GrC_rev_potentials)
 
         # Hilock
         self.axon = create_section('hilock', self, 1, 1.5, cm=2, start=(0.0, 5.62232), end=(0.0, 6.62232))
-        self.axon.connect(self.soma[0], 0, 0)  
+        self.axon.connect(self.soma[0], 0, 0)
         add_channels(self.axon, ('Leak', 'GRC_NA_FHF', 'Kv3_4', 'GRC_CA', ca_ion_accum), params["axon"], GrC_rev_potentials)
 
         # Axon Initial Segment (AIS)
         self.ais = create_section('ais', self, 10, 0.7, start=(0.0, 6.62232), end=(0.0, 16.62232))
         self.ais.connect(self.axon, 1, 0)
-        add_channels(self.axon, ('Leak', 'GRC_NA_FHF', 'Kv3_4', 'GRC_CA', 'GRC_KM', ca_ion_accum), params["ais"], GrC_rev_potentials)
+        add_channels(self.ais, ('GRC_NA_FHF', 'Kv3_4', 'Leak', 'GRC_CA', 'GRC_KM', ca_ion_accum), params["ais"], GrC_rev_potentials)
 
         # Ascending Axons (AA)
         length_of_sections = 7
