@@ -80,11 +80,11 @@ class Golgi():
 
         # MF
         self.L_MF = [Synapse('MF', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, mf_n)]
-        self.L_MF_NMDA_B = [Synapse('MF_nmda_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, mf_n)]
+        self.L_MF_NMDA_B = [Synapse('MF_NMDA_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, mf_n)]
 
         # AA
         self.L_AA = [Synapse('AA', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]
-        self.L_AA_NMDA_B = [Synapse('MF_nmda_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]  # TODO: MF_nmda_B?
+        self.L_AA_NMDA_B = [Synapse('MF_NMDA_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]  # TODO: MF_NMDA_B?
 
 
 def get_indices_in_ranges(*ranges):

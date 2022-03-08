@@ -34,7 +34,7 @@ class Synapse:
                 self.whatami = "syn_MF2GrC_det"
                 self.postsyns['AMPA'] = [set_attrs(h.GRANULE_Ampa_det_vi(0.9, sec=section), tau_facil=5, tau_rec=8, tau_1=1, gmax=1200, U=0.43)]
 
-        elif source == 'MF_nmda_B':
+        elif source == 'MF_NMDA_B':
             if isinstance(target, Golgi.Golgi):
                 # Make a mossy fiber NMDAB onto a Golgi cell
                 # Use deterministic synapses*
@@ -52,6 +52,7 @@ class Synapse:
                 self.postsyns['AMPA'] = [set_attrs(h.Golgi_PF_syn(0.7, sec=section), tau_facil=54, tau_rec=35.1, tau_1=30, gmax=1200, U=0.4)]
 
         if len(self.postsyns) == 0:
-            print('SOURCE TYPE DOES NOT EXIST SOMETHING WRONG!!!!!!!!!')
+            print('Bad Synapse!')
+            print(source, '=>', target)
         else:
             self.nc_syn = [h.NetCon(self.input, receptor[0], 0, 0.1, 1) for receptor in self.postsyns.values()]
