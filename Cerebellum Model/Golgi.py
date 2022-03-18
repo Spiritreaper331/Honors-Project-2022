@@ -77,6 +77,7 @@ class Golgi():
 
         # PF
         self.L_PF = [Synapse('PF', self, self.dend_pf[i%len(self.dend_pf)]) for i in range(0, pf_n)]
+        
 
         # MF
         self.L_MF = [Synapse('MF', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, mf_n)]

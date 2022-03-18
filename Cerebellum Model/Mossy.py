@@ -1,4 +1,3 @@
-
 import math
 from neuron import h
 
@@ -18,9 +17,13 @@ nmossy = 4  # There is code that assumes this equals be nsyn1 (in the original c
 NumSyn = 2  # This value turns off mossy fibers above that value
             # This can be changed at runtime if either the LTP() or LTD() function is called afterwards
 
+acell_home_ = h.Section('acell_home_')
+
 # Single compartment cell
-class Grc:
+class Mossy:
+
     def __init__(self, nsyn):
+        
         self.soma = soma = h.Section(name='soma')
         soma.nseg = 1
         soma.diam = 9.772
@@ -60,6 +63,9 @@ class Grc:
         self.stim0.dur = 4000
         self.stim0.amp = 0.00733
 
+        GrCell = [Mossy(nsyn1) for _ in range(ncells)]
+        Mossy = [Mossy() for _ in range(nmossy)]
+
         # Syn1 has the following modifiable parameters for short-term plasticity
         #   taurec (tau recovery, ms), taufacil (tau facilitation, ms), tauin (tau decay, ms), usr (use of resources by each AP), u0 (initial facilitated use)
         self.syn1 = [h.GrC_Glu1(soma(0.5)) for _ in range(nsyn)]
@@ -98,12 +104,9 @@ class Grc:
     def connect2target(self, target):
         return h.NetCon(self.soma(1).v_ref, target)
 
-
-# Create an artifical cell for use with point-processing
-acell_home_ = h.Section('acell_home_')
-
-class S1Gen:
     def __init__(self):
+
+        # Create an artifical cell for use with point-processing
         # This mossy fiber spike generator has the following modifiable parameters:
         #   t01 (first spike time)
         #   t02 (last spike time)
@@ -113,8 +116,9 @@ class S1Gen:
         #   startbursting (begin of the input, ms)
         #   endbursting (end of the input, ms)
         #   noise (poisson noise, 0 means none)
+
         global acell_home_
-        self.pp = h.SpGen2(acell_home_(0.5))
+        self.pp = h.Grc(acell_home_(0.5))
 
     def connect2target(self, target):
         return h.NetCon(self.pp, target)
@@ -124,54 +128,50 @@ class S1Gen:
         self.pp.t01 = -1
         self.pp.t02 = -1
         self.pp.APinburst = 0
-
-
-# Create the cells
-GrCell = [Grc(nsyn1) for _ in range(ncells)]
-Mossy = [S1Gen() for _ in range(nmossy)]
-
-
-# These two functions setup the mossy fiber cells into one of two example patterns
-# NOTE: The LTP version is the default settings, so if nothing is done those are the settings used
-def LTP():
+        # Create the cells
+    # These two functions setup the mossy fiber cells into one of two example patterns
+    # NOTE: The LTP version is the default settings, so if nothing is done those are the settings used
+    
+    def LTP():
     # LTP after 4 bursts at 100 Hz
-    for mossy in Mossy[:NumSyn]:
-        mossy.pp.t01 = 20
-        mossy.pp.t02 = 420000
-        mossy.pp.fast_freq = 100
-        mossy.pp.slow_freq = 4
-        mossy.pp.APinburst = 10
-        mossy.pp.startbursting = 2000
-        mossy.pp.endbursting = 3000
-    for mossy in Mossy[NumSyn:]: mossy.turn_off()
+        for mossy in Mossy[:NumSyn]:
+            mossy.pp.t01 = 20
+            mossy.pp.t02 = 420000
+            mossy.pp.fast_freq = 100
+            mossy.pp.slow_freq = 4
+            mossy.pp.APinburst = 10
+            mossy.pp.startbursting = 2000
+            mossy.pp.endbursting = 3000
+        for mossy in Mossy[NumSyn:]: mossy.turn_off()
 
-def LTD():
-    # LTD after continuous stimulation at 2 Hz
-    for mossy in Mossy[:NumSyn]:
-        mossy.pp.t01 = 20
-        mossy.pp.t02 = 420000
-        mossy.pp.fast_freq = 2
-        mossy.pp.slow_freq = 0
-        mossy.pp.APinburst = 10
-        mossy.pp.startbursting = 2000
-        mossy.pp.endbursting = 3500
-    for mossy in Mossy[NumSyn:]: mossy.turn_off()
+    def LTD():
+        # LTD after continuous stimulation at 2 Hz
+        for mossy in Mossy[:NumSyn]:
+            mossy.pp.t01 = 20
+            mossy.pp.t02 = 420000
+            mossy.pp.fast_freq = 2
+            mossy.pp.slow_freq = 0
+            mossy.pp.APinburst = 10
+            mossy.pp.startbursting = 2000
+            mossy.pp.endbursting = 3500
+        for mossy in Mossy[NumSyn:]: mossy.turn_off()
 
 
 # Network instantiation
-def make_connection(src, target, weight=0.5, delay=0):
-    netcon = src.connect2target(target)
-    netcon.weight[0] = weight  # TODO: why the [0] to make this work?
-    netcon.delay = delay
-    return netcon
-nclist = [make_connection(mossy, syn) for mossy, syn in zip(Mossy, GrCell[0].syn1)]
+    def make_connection(src, target, weight=0.5, delay=0):
+        netcon = src.connect2target(target)
+        netcon.weight[0] = weight  # TODO: why the [0] to make this work?
+        netcon.delay = delay
+        return netcon
+        nclist = [make_connection(mossy, syn) for mossy, syn in zip(Mossy, GrCell[0].syn1)]
 
 
 # Setup recordings
-def record(ref):
-    vec = h.Vector()
-    vec.record(ref)
-    return vec
+    def record(ref):
+        vec = h.Vector()
+        vec.record(ref)
+        return vec
+
 t_vec = record(h._ref_t)
 mossy_fiber_firing_recordings = [record(mossy.pp._ref_y) for mossy in Mossy]
 GrC_voltage_recording = record(GrCell[0].soma(0.5)._ref_v)
