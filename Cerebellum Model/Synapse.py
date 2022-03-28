@@ -17,14 +17,21 @@ class Synapse:
 
         self.postsyns = {}
 
-        if source == 'PF':
+        if source == 'PF_AMPA':
             if isinstance(target, Golgi.Golgi):
                 # Make a parallel fiber synapse onto a Golgi cell
                 # Use deterministic synapses
                 self.whatami = "syn_PF2GoC_det"
-                self.postsyns['AMPA'] = [set_attrs(h.Golgi_PF_syn(0.5, sec=section), tau_facil=10.8*5, tau_rec=35.1, tau_1=30, gmax=1200, U=0.4)]
+                self.postsyns['AMPA'] = [set_attrs(h.Golgi_PF_syn(0.5, sec=section), tau_facil=10.8*5, tau_rec=35.1, tau_1=30, gmax=1200, U=0.4)] # TODO: Incorporate correct parameters
 
-        elif source == 'MF':
+        if source == 'PF_NMDA':
+            if isinstance(target, Golgi.Golgi):
+                # Make a parallel fiber synapse onto a Golgi cell
+                # Use deterministic synapses
+                self.whatami = "syn_PF2GoC_det"
+                self.postsyns['NMDA'] = [set_attrs(h.Golgi_PF_syn(0.5, sec=section), tau_facil=10.8*5, tau_rec=35.1, tau_1=30, gmax=1200, U=0.4)]
+
+        elif source == 'MF_AMPA':
             if isinstance(target, Golgi.Golgi):
                 # Make a mossy fiber synapse onto a Golgi cell
                 # Use deterministic synapses
@@ -44,7 +51,7 @@ class Synapse:
                 self.whatami = "syn_MFB2GrC_det"
                 self.postsyns['NMDA'] = [set_attrs(h.GRANULE_Nmda_det_vi(0.9, sec=section), tau_facil=5, tau_rec=8, tau_1=1, gmax=18800, U=0.43)]
 
-        elif source == 'AA':
+        elif source == 'AA_AMPA':
             if isinstance(target, Golgi.Golgi):
                 # Make a AA synapse onto a Golgi cell
                 # Use deterministic synapses*

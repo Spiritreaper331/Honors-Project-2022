@@ -71,20 +71,19 @@ class Golgi():
         self.vm = h.Vector()
         self.vm.record(self.soma[0](0.5)._ref_v)
 
-
     def createsyn(self, pf_n, mf_n, aa_n):
         from Synapse import Synapse
 
         # PF
-        self.L_PF = [Synapse('PF', self, self.dend_pf[i%len(self.dend_pf)]) for i in range(0, pf_n)]
+        self.L_PF = [Synapse('PF_AMPA', self, self.dend_pf[i%len(self.dend_pf)]) for i in range(0, pf_n)]
+        self.L_PF_NMDA = [Synapse('PF_NMDA', self, self.dend_pf[i%len(self.dend_pf)]) for i in range(0, pf_n)]
         
-
         # MF
-        self.L_MF = [Synapse('MF', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, mf_n)]
         self.L_MF_NMDA_B = [Synapse('MF_NMDA_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, mf_n)]
+        self.L_MF_AMPA = [Synapse('MF_AMPA', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, mf_n)]
 
         # AA
-        self.L_AA = [Synapse('AA', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]
+        self.L_AA = [Synapse('AA_AMPA', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]
         self.L_AA_NMDA_B = [Synapse('MF_NMDA_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]  # TODO: MF_NMDA_B?
 
 

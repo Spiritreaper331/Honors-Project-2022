@@ -2,6 +2,7 @@ import math
 from neuron import h
 
 h.load_file("stdrun.hoc")
+h.load_file("noload.hoc")
 
 h.v_init = -80
 h.tstop = 420100
@@ -19,11 +20,18 @@ NumSyn = 2  # This value turns off mossy fibers above that value
 
 acell_home_ = h.Section('acell_home_')
 
+ncells=1
+nmossy=4
+nsyn1=4
+
 # Single compartment cell
 class Mossy:
 
+    GrCell = [Mossy(nsyn1) for _ in range(ncells)]
+    Mossy = [Mossy() for _ in range(nmossy)]
+
     def __init__(self, nsyn):
-        
+
         self.soma = soma = h.Section(name='soma')
         soma.nseg = 1
         soma.diam = 9.772
@@ -62,9 +70,6 @@ class Mossy:
         self.stim0.delay = 1000 # TODO: possibly customize these values
         self.stim0.dur = 4000
         self.stim0.amp = 0.00733
-
-        GrCell = [Mossy(nsyn1) for _ in range(ncells)]
-        Mossy = [Mossy() for _ in range(nmossy)]
 
         # Syn1 has the following modifiable parameters for short-term plasticity
         #   taurec (tau recovery, ms), taufacil (tau facilitation, ms), tauin (tau decay, ms), usr (use of resources by each AP), u0 (initial facilitated use)
@@ -172,48 +177,48 @@ class Mossy:
         vec.record(ref)
         return vec
 
-t_vec = record(h._ref_t)
-mossy_fiber_firing_recordings = [record(mossy.pp._ref_y) for mossy in Mossy]
-GrC_voltage_recording = record(GrCell[0].soma(0.5)._ref_v)
-GrCell_ltp1_messenger_recording = record(GrCell[0].ltp1[0]._ref_messenger)
-GrCell_ltp1_Np_recording = record(GrCell[0].ltp1[0]._ref_Np)
-GrCell_ltp1_Nd_recording = record(GrCell[0].ltp1[0]._ref_Nd)
+    t_vec = record(h._ref_t)
+    mossy_fiber_firing_recordings = [record(mossy.pp._ref_y) for mossy in Mossy]
+    GrC_voltage_recording = record(GrCell[0].soma(0.5)._ref_v)
+    GrCell_ltp1_messenger_recording = record(GrCell[0].ltp1[0]._ref_messenger)
+    GrCell_ltp1_Np_recording = record(GrCell[0].ltp1[0]._ref_Np)
+    GrCell_ltp1_Nd_recording = record(GrCell[0].ltp1[0]._ref_Nd)
 
 
 # Run the simulation
-LTD()
-h.finitialize(h.v_init)
-h.run()
+# LTD()
+# h.finitialize(h.v_init)
+# h.run()
 
 
-# Plot the results
-import matplotlib.pyplot as plt
+# # Plot the results
+# import matplotlib.pyplot as plt
 
-plt.figure()
-plt.title("Mossy Fibers")
-for i, recording in enumerate(mossy_fiber_firing_recordings):
-    plt.plot(t_vec, recording, label=f"#{i}")
-plt.legend()
-plt.xlabel("Time (ms)")
-plt.ylim([0, 30])
-plt.xlim([0, 4000])
+# plt.figure()
+# plt.title("Mossy Fibers")
+# for i, recording in enumerate(mossy_fiber_firing_recordings):
+#     plt.plot(t_vec, recording, label=f"#{i}")
+# plt.legend()
+# plt.xlabel("Time (ms)")
+# plt.ylim([0, 30])
+# plt.xlim([0, 4000])
 
-plt.figure()
-plt.title("GrC Membrane Potential")
-plt.plot(t_vec, GrC_voltage_recording)
-plt.xlabel("Time (ms)")
-plt.ylabel("Membrane Potential (mV)")
+# plt.figure()
+# plt.title("GrC Membrane Potential")
+# plt.plot(t_vec, GrC_voltage_recording)
+# plt.xlabel("Time (ms)")
+# plt.ylabel("Membrane Potential (mV)")
 
-plt.figure()
-plt.title("LTP1 Messenger")
-plt.plot(t_vec, GrCell_ltp1_messenger_recording)
-plt.xlabel("Time (ms)")
+# plt.figure()
+# plt.title("LTP1 Messenger")
+# plt.plot(t_vec, GrCell_ltp1_messenger_recording)
+# plt.xlabel("Time (ms)")
 
-plt.figure()
-plt.title("LTP1 Np and Nd")
-plt.plot(t_vec, GrCell_ltp1_Np_recording, label="Np")
-plt.plot(t_vec, GrCell_ltp1_Nd_recording, label="Nd")
-plt.legend()
-plt.xlabel("Time (ms)")
+# plt.figure()
+# plt.title("LTP1 Np and Nd")
+# plt.plot(t_vec, GrCell_ltp1_Np_recording, label="Np")
+# plt.plot(t_vec, GrCell_ltp1_Nd_recording, label="Nd")
+# plt.legend()
+# plt.xlabel("Time (ms)")
 
-plt.show()
+# plt.show()

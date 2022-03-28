@@ -122,15 +122,15 @@ class GrC():
     def createsyn(self, nsyn_MF_AMPA, nsyn_MF_NMDA, list_dend_AMPA, list_dend_NMDA):
         from Synapse import Synapse
 
-        self.MF_GrC = []
-        self.MF_GrC_mossy = []
+        self.MF_GrC_AMPA = []
+        self.MF_GrC_NMDA_B = []
 
         # Mossy AMPA
         for x in range(nsyn_MF_AMPA):
             for z1 in list_dend_AMPA:
-                self.MF_GrC.append(Synapse('MF', self, self.dend[z1]))
+                self.MF_GrC_AMPA.append(Synapse('MF_AMPA', self, self.dend[z1]))
 
         # Mossy NMDA
         for y in range(nsyn_MF_NMDA):
             for z2 in list_dend_NMDA:
-                self.MF_GrC_mossy.append(Synapse('MF_NMDA_B', self, self.dend[z2]))
+                self.MF_GrC_NMDA_B.append(Synapse('MF_NMDA_B', self, self.dend[z2]))
