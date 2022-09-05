@@ -67,7 +67,10 @@ class Golgi():
                 add_channels(self.axon[i], ('Leak', 'Nav1_6', 'Kv3_4', 'cdp5StCmod'), axon_params, rev_potentials)
 
         # Setup recordings
+        self.spike_time_vec = h.Vector()
         self.nc_spike = h.NetCon(self.soma[0](1)._ref_v, None, -20, 0.1, 1, sec=self.soma[0])
+        self.nc_spike.record(self.spike_time_vec)
+
         self.vm = h.Vector()
         self.vm.record(self.soma[0](0.5)._ref_v)
 
@@ -76,7 +79,8 @@ class Golgi():
 
         # PF
         self.L_PF = [Synapse('PF_AMPA', self, self.dend_pf[i%len(self.dend_pf)]) for i in range(0, pf_n)]
-        self.L_PF_NMDA = [Synapse('PF_NMDA', self, self.dend_pf[i%len(self.dend_pf)]) for i in range(0, pf_n)]
+        self.L_PF_NMDA = [Synapse('PF_NMDA', self, self.dend_pf[i%len(self.dend_pf)]) for i in range(0, pf_n)] 
+        # original modeldb files do not contain NMDA synapses for PF & AA
         
         # MF
         self.L_MF_NMDA_B = [Synapse('MF_NMDA_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, mf_n)]
@@ -84,7 +88,7 @@ class Golgi():
 
         # AA
         self.L_AA = [Synapse('AA_AMPA', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]
-        self.L_AA_NMDA_B = [Synapse('MF_NMDA_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]  # TODO: MF_NMDA_B?
+        self.L_AA_NMDA_B = [Synapse('MF_NMDA_B', self, self.dend_aa_mf[i%len(self.dend_aa_mf)]) for i in range(0, aa_n)]  
 
 
 def get_indices_in_ranges(*ranges):

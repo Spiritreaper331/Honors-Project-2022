@@ -95,7 +95,7 @@ class GrC():
         length_of_sections = 7
         num_aa_sections = 126//length_of_sections
         self.HD_aa = []
-        start = 16.62232  # TODO: was in the loop, but that defeats its purpose
+        start = 16.62232  
         for i in range(num_aa_sections):
             aa_section = create_section(f'aa_{i}', self, length_of_sections, 0.3, start=(0.0, start+length_of_sections*i), end=(0.0, start+length_of_sections*(i+1)))
             add_channels(aa_section, ('Leak', 'GRC_NA', 'Kv3_4', 'GRC_CA', ca_ion_accum), params["aa"], GrC_rev_potentials)
@@ -107,7 +107,7 @@ class GrC():
         num_pf_sections = 1000//length_of_sections
         self.HD_pf = [[] for j in range(num_pf)]
         for j, pf in enumerate(self.HD_pf):
-            x, y = 0.0, 142.62232  # TODO: was in the loop, but that defeats its purpose
+            x, y = 0.0, 142.62232  
             direction = (-1)**j
             for i in range(num_pf_sections):
                 pf_section = create_section(f'pf_{j}_{i}', self, length_of_sections, 0.15, start=(x+length_of_sections*direction*i, y), end=(x+length_of_sections*direction*(i+1), y))
@@ -115,22 +115,32 @@ class GrC():
                 pf_section.connect(pf[-1] if i > 0 else self.HD_aa[-1], 1, 0)
                 pf.append(pf_section)
 
-        # Voltage vector
-        self.vm_soma = h.Vector()
-        self.vm_soma.record(self.soma[0](0.5)._ref_v)
+        # Setup recordings
+        self.spike_time_vec = h.Vector()
+        self.nc_spike = h.NetCon(self.soma[0](1)._ref_v, None, -20, 0.1, 1, sec=self.soma[0])
+        self.nc_spike.record(self.spike_time_vec)
 
-    def createsyn(self, nsyn_MF_AMPA, nsyn_MF_NMDA, list_dend_AMPA, list_dend_NMDA):
+        self.vm = h.Vector()
+        self.vm.record(self.soma[0](0.5)._ref_v)
+
+    def createsyn(self, nsyn_MF_AMPA, nsyn_MF_NMDA, nsyn_GoC_GABA, list_dend): # originally three separate dendritic lists but it was redundant
         from Synapse import Synapse
 
         self.MF_GrC_AMPA = []
         self.MF_GrC_NMDA_B = []
-
+        self.GoC_GrC_GABA = []
+        
         # Mossy AMPA
-        for x in range(nsyn_MF_AMPA):
-            for z1 in list_dend_AMPA:
+        for x in range(nsyn_MF_AMPA // len(list_dend)): # synapses divded upon number of compartments on dendrites
+            for z1 in list_dend:
                 self.MF_GrC_AMPA.append(Synapse('MF_AMPA', self, self.dend[z1]))
 
         # Mossy NMDA
-        for y in range(nsyn_MF_NMDA):
-            for z2 in list_dend_NMDA:
+        for y in range(nsyn_MF_NMDA // len(list_dend)):
+            for z2 in list_dend:
                 self.MF_GrC_NMDA_B.append(Synapse('MF_NMDA_B', self, self.dend[z2]))
+
+        # Golgi GABA
+        for z in range(nsyn_GoC_GABA // len(list_dend)):
+            for z3 in list_dend:
+                self.GoC_GrC_GABA.append(Synapse('GoC_GABA', self, self.dend[z3]))
