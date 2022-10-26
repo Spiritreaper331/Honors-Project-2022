@@ -19,7 +19,7 @@ UNITS {
 }
 
 ASSIGNED {
-	ilca		(mA/cm2) : instantaneous calcium current of l-type calcium channel
+	ilca		(mA/cm2) : instantaneous calcium current of c
 	v			(mV)
 	ica		(mA/cm2)
 	g		(S/cm2)
