@@ -55,7 +55,6 @@ def set_attrs(object, **kwargs):
         setattr(object, name, value)
     return object
 
-
 def export_data(sim_dict, model_name, file_name):
     """
     Exports data from sim_dict to hdf5 file. 
@@ -78,7 +77,6 @@ def export_data(sim_dict, model_name, file_name):
                 file[model_name][category].create_dataset(model_value, data = sim_dict[category][model_value])
                 print(file[model_name][category][model_value])
 
-                    
 def import_data(file_name):
     """
     Imports data from hdf5 file
